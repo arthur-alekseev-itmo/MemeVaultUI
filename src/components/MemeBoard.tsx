@@ -34,10 +34,13 @@ export function MemeBoard() {
     }, [allMemes])
 
     const content = (memes != null)
-        ? <><Search search={handleFilter} /> {memes.map((e, i) => <Meme key={i} image={e} update={update} />)}</>
-        : <div style={{ height: "calc(100vh - 4rem)" }}><Loading text="Загружаем..." /></div>
+        ? <>
+            <Search search={handleFilter} />
+            <div className="meme-board">
+                {memes.map((e, i) => <Meme key={i} image={e} update={update} />)}
+            </div>
+        </>
+        : <div style={{ height: "calc(100vh - 4rem)" }}> <Loading text="Загружаем..." /> </div>
 
-    return <div className="meme-board">
-        {content}
-    </div>
+    return content
 }

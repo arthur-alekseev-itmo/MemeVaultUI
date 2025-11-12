@@ -1,6 +1,24 @@
 .meme-board {
     padding: 1rem;
-    display: flex;
+    display: grid;
     gap: 1rem;
-    flex-direction: column;
+    grid-template-columns: 1fr;
+}
+
+@media (max-width: 600px) {
+    .meme-board {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1200px) {
+    .meme-board {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1200px) {
+    .meme-board {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
