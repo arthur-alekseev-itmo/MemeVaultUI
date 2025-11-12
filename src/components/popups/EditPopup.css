@@ -7,6 +7,12 @@
     padding: 0.5rem;
 }
 
+@media (min-width: 500px) {
+    .edit-popup {
+        width: 400px;
+    }
+}
+
 .edit-popup-preview {
     width: 100%;
     overflow: hidden;
