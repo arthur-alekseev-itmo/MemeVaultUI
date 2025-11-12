@@ -1,7 +1,7 @@
 .edit-popup {
     width: 80%;
     height: fit-content;
-    background-color: #101323;
+    background-color: #2b2a33;
     border-radius: 1rem;
     border: 1px solid #303343;
     padding: 0.5rem;
@@ -29,7 +29,7 @@
     height: 6rem;
     padding: 0.2rem 0.2rem 0.2rem 0.8rem;
     border: 1px solid #353839aa;
-    background-color: #202333aa;
+    background-color: #1e1d23;
 
     margin-bottom: 1.5rem;
 }
@@ -53,7 +53,7 @@
 .tags-edit:has(.input-area:focus) {
     outline: none;
     border: 1px solid #454849aa;
-    background-color: #303343aa;
+    background-color: #1e1d23;
 }
 
 .bottom-control {

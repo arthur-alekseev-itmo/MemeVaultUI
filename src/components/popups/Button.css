@@ -5,7 +5,8 @@
     border: none;
     width: 100%;
     border: 1px solid #353839aa;
-    background-color: #202333aa;
+    background-color: #1e1d23;
+    padding: 0.25rem;
 }
 
 .popup-button:hover {
