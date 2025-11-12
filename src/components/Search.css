@@ -4,11 +4,11 @@
     gap: 0.6rem;
     align-items: center;
 
-    border-radius: 2rem;
+    border-radius: 0.5rem;
     height: 2rem;
-    margin: 0.2rem;
+    margin: 1rem 1rem 0 1rem;
     padding: 0.2rem 0.2rem 0.2rem 0.8rem;
-    border: 1px solid #444445;
+    border: 1px solid #1e1d23;
     background-color: #1e1d23;
 }
 
@@ -18,7 +18,6 @@
     background-color: #00000000;
     border: none;
     outline: none;
-    font-size: 1.15rem;
     font-weight: 200;
 }
 
