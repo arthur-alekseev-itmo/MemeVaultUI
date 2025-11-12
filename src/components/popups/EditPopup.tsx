@@ -4,6 +4,7 @@ import { Button } from "./Button"
 import "./EditPopup.css"
 import "./Popups.css"
 import { backButton } from '@tma.js/sdk-react';
+import { Content } from "../Meme"
 
 export function BackButton({ close }: { close: () => void }) {
     useEffect(() => { backButton.show(); }, [])
@@ -34,7 +35,7 @@ export function EditPopup({ meme, close, save }: { meme: meme, close: () => void
                 <span className="edit-header">Редактирование</span>
             </div>
             <div className="edit-popup-image">
-                <img className="meme-img" src={meme.image_url} />
+                <Content image={meme} />
             </div>
             <span className="grayish"> Редактировать теги</span>
             <div className="tags-edit">

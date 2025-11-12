@@ -39,6 +39,13 @@ function DeleteButton({ onClick }: { onClick: () => void }) {
     </div>
 }
 
+export function Content({ image }: { image: meme }) {
+    switch (image.type) {
+        case "video": return <video className="meme-img" controls width="250" muted> <source src={image.image_url} /> </video>
+        default: return <img className="meme-img" src={image.image_url} />
+    }
+}
+
 export function Meme({ image, update }: { image: meme, update: () => Promise<void> }) {
     const [popup, setPopup] = useState(<></>)
     const [loadingMessage, setLoadingMessage] = useState<string | null>(null);
@@ -68,7 +75,7 @@ export function Meme({ image, update }: { image: meme, update: () => Promise<voi
         <div className='meme-img-container'>
             <EditButton onClick={openEditPopup} />
             <DeleteButton onClick={openDeletePopup} />
-            <img className="meme-img" src={image.image_url} />
+            <Content image={image} />
         </div>
         <div className='meme-tags'>
             {image.tags.map(t => <Tag text={t} />)}
