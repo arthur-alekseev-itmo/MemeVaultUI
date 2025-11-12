@@ -1,0 +1,63 @@
+.edit-popup {
+    width: 80%;
+    height: fit-content;
+    background-color: #101323;
+    border-radius: 1rem;
+    border: 1px solid #303343;
+    padding: 0.5rem;
+}
+
+.edit-popup-preview {
+    width: 100%;
+    overflow: hidden;
+}
+
+.edit-header {
+    font-size: 1.4rem;
+    color: #eeeeff;
+    font-weight: 200;
+    margin-bottom: 0.6rem;
+}
+
+.tags-edit {
+    display: flex;
+    flex-direction: row;
+    gap: 0.6rem;
+    align-items: center;
+
+    border-radius: 0.5rem;
+    height: 6rem;
+    padding: 0.2rem 0.2rem 0.2rem 0.8rem;
+    border: 1px solid #353839aa;
+    background-color: #202333aa;
+
+    margin-bottom: 1.5rem;
+}
+
+.edit-popup-image {
+    margin-bottom: 1.0rem;
+}
+
+.input-area {
+    width: 100%;
+    color: #eeeeff;
+    background-color: #00000000;
+    border: none;
+    outline: none;
+    font-size: 1.15rem;
+    font-weight: 200;
+    font-family: inherit;
+    height: 100%;
+}
+
+.tags-edit:has(.input-area:focus) {
+    outline: none;
+    border: 1px solid #454849aa;
+    background-color: #303343aa;
+}
+
+.bottom-control {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}

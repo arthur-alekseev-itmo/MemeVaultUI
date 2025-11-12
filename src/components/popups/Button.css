@@ -1,0 +1,14 @@
+.popup-button {
+    font-weight: 200;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+    border: none;
+    width: 100%;
+    border: 1px solid #353839aa;
+    background-color: #202333aa;
+}
+
+.popup-button:hover {
+    border: 1px solid #454849aa;
+    background-color: #303343aa;
+}

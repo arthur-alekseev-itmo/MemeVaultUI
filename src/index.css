@@ -1,5 +1,39 @@
 body {
-  background: var(--tg-theme-secondary-bg-color, white);
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+
+  background-color: #101323;
   padding: 0;
   margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.full-wide {
+  width: 100%;
+}
+
+.red {
+  color: #ff6655
+}
+
+.green {
+  color: #66ff55
+}
+
+.white {
+  color: #ffffff
+}
+
+.grayish {
+  color: #888899
 }

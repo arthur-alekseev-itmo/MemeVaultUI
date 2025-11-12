@@ -1,0 +1,34 @@
+.search-box {
+    display: flex;
+    flex-direction: row;
+    gap: 0.6rem;
+    align-items: center;
+
+    border-radius: 2rem;
+    height: 2rem;
+    margin: 0.2rem;
+    padding: 0.2rem 0.2rem 0.2rem 0.8rem;
+    border: 1px solid #555869;
+    background-color: #303343;
+}
+
+.input-field {
+    width: 100%;
+    color: #eeeeff;
+    background-color: #00000000;
+    border: none;
+    outline: none;
+    font-size: 1.15rem;
+    font-weight: 200;
+}
+
+.search-box:has(.input-field:focus) {
+    border: 1px solid #777aaa;
+    outline: none;
+    box-shadow: 4px #55586944;
+}
+
+.search-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}

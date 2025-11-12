@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom/client';
 import { StrictMode } from 'react';
 import { retrieveLaunchParams } from '@tma.js/sdk-react';
 
-import { Root } from '@/components/Root.tsx';
+import { App } from '@/components/App.tsx';
 import { EnvUnsupported } from '@/components/EnvUnsupported.tsx';
 import { init } from '@/init.ts';
 
@@ -31,10 +31,10 @@ try {
     .then(() => {
       root.render(
         <StrictMode>
-          <Root/>
+          <App />
         </StrictMode>,
       );
     });
 } catch (e) {
-  root.render(<EnvUnsupported/>);
+  root.render(<EnvUnsupported />);
 }
