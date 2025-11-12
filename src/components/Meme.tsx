@@ -3,6 +3,8 @@ import { meme } from '../client/types'
 import { EditPopup } from './popups/EditPopup'
 import { useState } from 'react'
 import { DeletePopup } from './popups/DeletePopup'
+import { deleteMeme, updateMeme } from '@/client/backendClient'
+import { Loading } from './Loading'
 
 function TrashIcon() {
     const color = "#ff6655"
@@ -37,24 +39,31 @@ function DeleteButton({ onClick }: { onClick: () => void }) {
     </div>
 }
 
-export function Meme({ image }: { image: meme }) {
+export function Meme({ image, update }: { image: meme, update: () => Promise<void> }) {
     const [popup, setPopup] = useState(<></>)
+    const [loadingMessage, setLoadingMessage] = useState<string | null>(null);
 
     const openEditPopup = () => {
         const close = () => setPopup(<></>)
-        const save = (tags: string) => { alert(tags) }
+        const save = (tags: string) => {
+            setLoadingMessage("Сохраняем");
+            updateMeme(image.id, tags.split(" ")).then(() => { close(); update().then(() => setLoadingMessage(null)); })
+        }
         const r = <EditPopup meme={image} close={close} save={save} />
         setPopup(r)
     }
 
     const openDeletePopup = () => {
         const close = () => setPopup(<></>)
-        const remove = () => { alert("deleted") }
+        const remove = () => {
+            setLoadingMessage("Удаление");
+            deleteMeme(image.id).then(() => { close(); update().then(() => setLoadingMessage(null)); })
+        }
         const r = <DeletePopup meme={image} close={close} remove={remove} />
         setPopup(r)
     }
 
-    return <div className='meme-container'>
+    const ui = <div className='meme-container'>
         {popup}
         <div className='meme-img-container'>
             <EditButton onClick={openEditPopup} />
@@ -65,4 +74,6 @@ export function Meme({ image }: { image: meme }) {
             {image.tags.map(t => <Tag text={t} />)}
         </div>
     </div>
+
+    return loadingMessage ? <Loading text={loadingMessage!} /> : ui;
 }

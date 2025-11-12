@@ -1,7 +1,7 @@
 import { meme, found_memes } from "./types"
 
-const serverAddress: string = "http://localhost"
-const tempId: number = 1949941483
+// const serverAddress: string = "http://localhost"
+// const tempId: number = 1949941483
 
 // export function getAllMemes() {
 //     const url = `${serverAddress}/images?user_id=${tempId}`
@@ -29,7 +29,7 @@ export async function getAllMemes(): Promise<meme[]> {
     return memes;
 }
 
-export async function getMemesByTags(tags: string[]): Promise<found_memes> {
+export async function getMemesByTags(_tags: string[]): Promise<found_memes> {
     await delay(1000);
     return { exact_match: memes.slice(0, 3), partial_match: memes.slice(3) };
 }
@@ -41,5 +41,8 @@ export async function deleteMeme(id: number): Promise<void> {
 
 export async function updateMeme(id: number, tags: string[]): Promise<void> {
     await delay(1000);
-    memes.find(x => x.id != id)!.tags = tags
+    memes = memes.map(x => {
+        if (x.id == id) { x.tags = tags; }
+        return x;
+    })
 }

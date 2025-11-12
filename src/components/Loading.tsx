@@ -1,12 +1,12 @@
 import './Loading.css'
 
-export function Loading() {
+export function Loading({ text }: { text: string }) {
     return <div className='loading-div center'>
         <div className='loading-div-content'>
             <div className='center'>
                 <span className="loader"></span>
             </div>
-            <span> Загружаем... </span>
+            <span> {text} </span>
         </div>
     </div>
 }

@@ -8,6 +8,7 @@ import { getAllMemes } from '@/client/backendClient';
 import { Search } from './Search';
 
 export function MemeBoard() {
+    const [reloadFlag, setReloadFlag] = useState<boolean>(false);
     const [allMemes, setAllMemes] = useState<meme[] | null>(null);
     const [memes, setMemes] = useState<meme[] | null>(null);
 
@@ -17,17 +18,24 @@ export function MemeBoard() {
         setMemes(filtered ?? null);
     }
 
+    const refresh = () => getAllMemes().then(r => { setAllMemes(r); handleFilter("") })
+
+    const update = () => {
+        setReloadFlag(!reloadFlag)
+        return refresh()
+    }
+
+    useEffect(() => {
+        refresh()
+    }, [reloadFlag]);
+
     useEffect(() => {
         handleFilter("");
     }, [allMemes])
 
-    useEffect(() => {
-        getAllMemes().then(r => { setAllMemes(r); handleFilter("") })
-    }, []);
-
     const content = (memes != null)
-        ? <><Search search={handleFilter} /> {memes.map(e => <Meme image={e} />)}</>
-        : <div style={{ height: "calc(100vh - 4rem)" }}><Loading /></div>
+        ? <><Search search={handleFilter} /> {memes.map((e, i) => <Meme key={i} image={e} update={update} />)}</>
+        : <div style={{ height: "calc(100vh - 4rem)" }}><Loading text="Загружаем..." /></div>
 
     return <div className="meme-board">
         {content}
