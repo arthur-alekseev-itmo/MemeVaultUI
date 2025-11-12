@@ -22,3 +22,27 @@
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
+
+.nothing-found-div {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 5rem);
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.nothing-found-svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+.nothing-found-text {
+    width: fit-content;
+}
+
+a {
+    color: #55aaff
+}
