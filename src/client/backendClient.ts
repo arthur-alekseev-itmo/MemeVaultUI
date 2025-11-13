@@ -7,25 +7,26 @@ export function setUserId(id: number) {
     userId = id;
 }
 
-export function getAllMemes(): Promise<found_memes> {
-    if (userId == null) throw "User is null";
+export async function getAllMemes(): Promise<found_memes> {
+    if (userId === null) throw "User is null";
     const url = `${serverAddress}/user/images?user_id=${userId}`
-    return fetch(url, { method: "GET" }).then(r => r.json())
+    const r = await fetch(url, { method: "GET" });
+    return await r.json();
 }
 
-export function deleteMeme(tgId: string): Promise<void> {
-    if (userId == null) throw "User is null";
+export async function deleteMeme(tgId: string): Promise<void> {
+    if (userId === null) throw "User is null";
     const url = `${serverAddress}/image/delete?user_id=${userId}&tg_file_id=${tgId}`
-    return fetch(url, { method: "DELETE" }).then(_ => { })
+    await fetch(url, { method: "DELETE" });
 }
 
-export function updateMeme(tgId: string, tags: string[]): Promise<void> {
-    if (userId == null) throw "User is null";
+export async function updateMeme(tgId: string, tags: string[]): Promise<void> {
+    if (userId === null) throw "User is null";
     const url = `${serverAddress}/image/delete?user_id=${userId}&tg_file_id=${tgId}`
-    return fetch(url, { method: "PUT", body: JSON.stringify({ tags: tags }) }).then(_ => { })
+    await fetch(url, { method: "PUT", body: JSON.stringify({ tags: tags }) });
 }
 
-export async function getImage(tgId: string) {
+export async function getImage(_tgId: string) {
     await new Promise(resolve => setTimeout(resolve, 1000));
     return "https://www.alleycat.org/wp-content/uploads/2019/03/FELV-cat.jpg"
 }

@@ -6,19 +6,28 @@ import { MemeBoard } from './MemeBoard';
 import { miniApp, retrieveLaunchParams } from '@tma.js/sdk-react';
 import { useTranslation } from 'react-i18next';
 import { setUserId } from '@/client/backendClient';
+import { Loading } from './Loading';
 
 export function App() {
   miniApp.setBgColor("#1e1d23");
   miniApp.setHeaderColor("#1e1d23");
   miniApp.setBottomBarColor("#1e1d23");
   const { tgWebAppData } = retrieveLaunchParams();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const user = tgWebAppData?.user
 
   useEffect(() => {
-    i18n.changeLanguage(tgWebAppData?.user?.language_code === "ru" ? "ru" : "en");
-    setUserId(tgWebAppData?.user?.id!)
-  }, [])
+    console.log(user);
+    setUserId(user?.id!);
+    const lang = user?.language_code === "ru" ? "ru" : "en"
+    if (i18n.language !== lang)
+      i18n.changeLanguage(lang);
+  }, [user, i18n])
 
+  if (!user) {
+    return <Loading text={t("Unable to log in")} />
+  }
 
   return <div className="main-page">
     <MemeBoard />

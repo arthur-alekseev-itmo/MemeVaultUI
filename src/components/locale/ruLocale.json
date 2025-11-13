@@ -12,6 +12,9 @@
         "use": "Используйте",
         "to upload": "чтобы загрузить",
         "Loading...": "Загрузка...",
-        "Search by tags": "Поиск по тегу"
+        "Search by tags": "Поиск по тегу",
+        "Error loading images": "Ошибка при получении данных",
+        "Server returned ": "Сервер вернул код ",
+        "Unable to log in": "Авторизация не удалась"
     }
 }

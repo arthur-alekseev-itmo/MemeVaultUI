@@ -43,7 +43,7 @@ function DeleteButton({ onClick }: { onClick: () => void }) {
 export function Content({ image }: { image: meme }) {
     const [resource, setResource] = useState<string | null>(null);
     useEffect(() => {
-        getImage(image.file_id).then(r => setResource(r))
+        getImage(image.tg_file_id).then(r => setResource(r))
     }, [])
     const resourceUsed = resource ?? "https://placehold.co/600x400?text=Loading..."
     switch (image.type) {
@@ -61,7 +61,7 @@ export function Meme({ image, update }: { image: meme, update: () => Promise<voi
         const close = () => setPopup(<></>)
         const save = (tags: string) => {
             setLoadingMessage(t("Saving"));
-            updateMeme(image.file_id, tags.split(" ")).then(() => { close(); update().then(() => setLoadingMessage(null)); })
+            updateMeme(image.tg_file_id, tags.split(" ")).then(() => { close(); update().then(() => setLoadingMessage(null)); })
         }
         const r = <EditPopup meme={image} close={close} save={save} />
         setPopup(r)
@@ -71,7 +71,7 @@ export function Meme({ image, update }: { image: meme, update: () => Promise<voi
         const close = () => setPopup(<></>)
         const remove = () => {
             setLoadingMessage(t("Deleting"));
-            deleteMeme(image.file_id).then(() => { close(); update().then(() => setLoadingMessage(null)); })
+            deleteMeme(image.tg_file_id).then(() => { close(); update().then(() => setLoadingMessage(null)); })
         }
         const r = <DeletePopup meme={image} close={close} remove={remove} />
         setPopup(r)

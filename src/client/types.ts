@@ -1,6 +1,6 @@
 export type meme = {
     type: "image" | "gif" | "video",
-    file_id: string,
+    tg_file_id: string,
     tags: string[],
 }
 
