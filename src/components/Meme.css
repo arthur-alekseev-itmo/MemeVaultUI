@@ -38,6 +38,8 @@
 }
 
 .edit-button {
+    pointer-events: auto;
+    z-index: 7;
     border-radius: 0.5rem;
     position: relative;
     top: 0.25rem;
@@ -61,4 +63,8 @@
 .edit-icon {
     width: 1.2rem;
     height: 1.2rem;
+}
+
+.video-player {
+    pointer-events: none;
 }

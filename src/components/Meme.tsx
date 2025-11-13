@@ -1,9 +1,9 @@
 import './Meme.css'
 import { meme } from '../client/types'
 import { EditPopup } from './popups/EditPopup'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DeletePopup } from './popups/DeletePopup'
-import { deleteMeme, getImage, updateMeme } from '@/client/backendClient'
+import { deleteMeme, getImage, gifOfVideo, updateMeme } from '@/client/backendClient'
 import { Loading } from './Loading'
 import { useTranslation } from 'react-i18next'
 
@@ -39,11 +39,33 @@ function DeleteButton({ onClick }: { onClick: () => void }) {
         </div>
     </div>
 }
+function Gif({ url }: { url: string }) {
+    const [info, setInfo] = useState<string | null>(null)
+    const [useFallback, setUseFallback] = useState<boolean>(false)
+    const { t } = useTranslation();
+
+    useEffect(() => {
+        gifOfVideo(url).then(r => setInfo(r)).catch(_ => setUseFallback(true));
+    })
+
+    if (useFallback) {
+        return <video className="meme-img video-player" controls width="250" muted autoPlay={true}>
+            <source src={getImage(url)} />
+        </video>
+    }
+
+    return info
+        ? <img className="meme-img" src={info} />
+        : <div className='loading-gif'>
+            {t("Loading...")}
+        </div>
+}
 
 export function Content({ image }: { image: meme }) {
     switch (image.file_type) {
         case "photo": return <img className="meme-img" src={getImage(image.tg_file_id)} />
-        default: return <video className="meme-img" controls width="250" muted autoPlay={true}> <source src={getImage(image.tg_file_id)} /> </video>
+        case "gif": return <Gif url={image.tg_file_id} />
+        default: return <video className="meme-img video-player" controls width="250" muted autoPlay={true}> <source src={getImage(image.tg_file_id)} /> </video>
     }
 }
 

@@ -1,6 +1,7 @@
 import { found_memes } from "./types"
 
 const serverAddress: string = "https://vaultofmemes.duckdns.org"
+const convertServerAddress: string = "https://convert.vaultofmemes.duckdns.org/convert"
 var userId: number | null = null
 
 export function setUserId(id: number) {
@@ -29,4 +30,15 @@ export function getImage(tgId: string): string {
     if (userId === null) throw "User is null";
     const url = `${serverAddress}/image/${tgId}`
     return url
+}
+
+export async function gifOfVideo(videoUrl: string): Promise<string> {
+    const form = new FormData();
+    const url = `${convertServerAddress}/convert`
+    const video = await fetch(videoUrl).then(r => r.blob());
+    form.append('file', new File([video], 'tmp3y9cgi_f.mp4'));
+    return fetch(url, {
+        method: 'POST',
+        body: form
+    }).then(r => r.blob().then(b => URL.createObjectURL(b)));
 }
