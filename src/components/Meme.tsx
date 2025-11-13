@@ -55,7 +55,7 @@ export function Meme({ image, update }: { image: meme, update: () => Promise<voi
     const openEditPopup = () => {
         const close = () => setPopup(<></>)
         const save = (tags: string) => {
-            setLoadingMessage(t($ => $["Saving"]));
+            setLoadingMessage(t("Saving"));
             updateMeme(image.id, tags.split(" ")).then(() => { close(); update().then(() => setLoadingMessage(null)); })
         }
         const r = <EditPopup meme={image} close={close} save={save} />
