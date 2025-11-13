@@ -1,9 +1,9 @@
 import './Meme.css'
 import { meme } from '../client/types'
 import { EditPopup } from './popups/EditPopup'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DeletePopup } from './popups/DeletePopup'
-import { deleteMeme, updateMeme } from '@/client/backendClient'
+import { deleteMeme, getImage, updateMeme } from '@/client/backendClient'
 import { Loading } from './Loading'
 import { useTranslation } from 'react-i18next'
 
@@ -41,9 +41,14 @@ function DeleteButton({ onClick }: { onClick: () => void }) {
 }
 
 export function Content({ image }: { image: meme }) {
+    const [resource, setResource] = useState<string | null>(null);
+    useEffect(() => {
+        getImage(image.file_id).then(r => setResource(r))
+    }, [])
+    const resourceUsed = resource ?? "https://placehold.co/600x400?text=Loading..."
     switch (image.type) {
-        case "video": return <video className="meme-img" controls width="250" muted> <source src={image.image_url} /> </video>
-        default: return <img className="meme-img" src={image.image_url} />
+        case "video": return <video className="meme-img" controls width="250" muted> <source src={resourceUsed} /> </video>
+        default: return <img className="meme-img" src={resourceUsed} />
     }
 }
 
@@ -56,7 +61,7 @@ export function Meme({ image, update }: { image: meme, update: () => Promise<voi
         const close = () => setPopup(<></>)
         const save = (tags: string) => {
             setLoadingMessage(t("Saving"));
-            updateMeme(image.id, tags.split(" ")).then(() => { close(); update().then(() => setLoadingMessage(null)); })
+            updateMeme(image.file_id, tags.split(" ")).then(() => { close(); update().then(() => setLoadingMessage(null)); })
         }
         const r = <EditPopup meme={image} close={close} save={save} />
         setPopup(r)
@@ -66,7 +71,7 @@ export function Meme({ image, update }: { image: meme, update: () => Promise<voi
         const close = () => setPopup(<></>)
         const remove = () => {
             setLoadingMessage(t("Deleting"));
-            deleteMeme(image.id).then(() => { close(); update().then(() => setLoadingMessage(null)); })
+            deleteMeme(image.file_id).then(() => { close(); update().then(() => setLoadingMessage(null)); })
         }
         const r = <DeletePopup meme={image} close={close} remove={remove} />
         setPopup(r)

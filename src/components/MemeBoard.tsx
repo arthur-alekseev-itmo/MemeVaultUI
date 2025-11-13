@@ -38,7 +38,7 @@ export function MemeBoard() {
         setMemes(filtered ?? null);
     }
 
-    const refresh = () => getAllMemes().then(r => { setAllMemes(r); handleFilter("") })
+    const refresh = () => getAllMemes().then(r => { setAllMemes(r.images); handleFilter("") })
 
     const update = () => {
         setReloadFlag(!reloadFlag)

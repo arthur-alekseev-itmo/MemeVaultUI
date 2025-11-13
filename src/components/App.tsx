@@ -5,6 +5,7 @@ import './i18n'
 import { MemeBoard } from './MemeBoard';
 import { miniApp, retrieveLaunchParams } from '@tma.js/sdk-react';
 import { useTranslation } from 'react-i18next';
+import { setUserId } from '@/client/backendClient';
 
 export function App() {
   miniApp.setBgColor("#1e1d23");
@@ -15,6 +16,7 @@ export function App() {
 
   useEffect(() => {
     i18n.changeLanguage(tgWebAppData?.user?.language_code === "ru" ? "ru" : "en");
+    setUserId(tgWebAppData?.user?.id!)
   }, [])
 
 
