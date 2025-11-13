@@ -26,3 +26,42 @@
 `npm run dev:https` - запусть dev-версию приложения с https для работы с телеграммом
 
 `npm run build; npm run deploy` - выложить приложение на GH Pages
+
+## Технические особенности
+
+React/TypeScript
+
+Хостинг тут, на Github Pages, отсюда же идет на прод
+
+### Структура файлов
+
+```
+src
+├── client
+│   ├── backendClient.ts
+│   └── types.ts
+├── components
+│   ├── App.tsx / App.css
+│   ├── Loading.tsx / Loading.css
+│   ├── Meme.tsx / Meme.css
+│   ├── MemeBoard.tsx / MemeBoard.css
+│   ├── Search.tsx / Search.css
+│   ├── i18n.ts
+│   ├── locale
+│   │   ├── enLocale.json
+│   │   └── ruLocale.json
+│   └── popups
+│       ├── Button.tsx / Button.css
+│       ├── DeletePopup.tsx / DeletePopup.css
+│       ├── EditPopup.tsx / EditPopup.css
+│       └── Popups.css
+├── css
+│   ├── bem.ts
+│   └── classnames.ts
+├── helpers
+│   └── publicUrl.ts
+├── index.css
+├── index.tsx
+├── init.ts
+└── mockEnv.ts
+```
