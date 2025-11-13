@@ -65,6 +65,7 @@ export function MemeBoard() {
     }
 
     useEffect(() => {
+        console.log("Dashboard reloaded")
         refresh()
     }, [reloadFlag]);
 

@@ -17,6 +17,8 @@ export function App() {
 
   const user = tgWebAppData?.user
 
+  setUserId(user?.id!);
+
   useEffect(() => {
     console.log(user);
     setUserId(user?.id!);

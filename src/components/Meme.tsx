@@ -41,9 +41,9 @@ function DeleteButton({ onClick }: { onClick: () => void }) {
 }
 
 export function Content({ image }: { image: meme }) {
-    switch (image.type) {
-        case "video": return <video className="meme-img" controls width="250" muted> <source src={getImage(image.tg_file_id)} /> </video>
-        default: return <img className="meme-img" src={getImage(image.tg_file_id)} />
+    switch (image.file_type) {
+        case "photo": return <img className="meme-img" src={getImage(image.tg_file_id)} />
+        default: return <video className="meme-img" controls width="250" muted autoPlay={true}> <source src={getImage(image.tg_file_id)} /> </video>
     }
 }
 
