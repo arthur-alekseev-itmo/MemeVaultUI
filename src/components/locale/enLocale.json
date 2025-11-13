@@ -1,17 +1,3 @@
 {
-    "translation": {
-        "Delete file": "Удалить файл",
-        "Delete": "Удалить",
-        "Cancel": "Отмена",
-        "Edit file": "Редактировать файл",
-        "Edit tags": "Редактировать теги",
-        "Save": "Сохранить",
-        "Saving": "Сохраняем",
-        "Deleting": "Удаляем",
-        "Nothing found": "Ничего не найдено",
-        "use": "Используйте",
-        "to upload": "чтобы загрузить",
-        "Loading...": "Загрузка...",
-        "Search by tags": "Поиск по тегу"
-    }
+    "translation": {}
 }
