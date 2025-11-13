@@ -1,6 +1,6 @@
 import { found_memes } from "./types"
 
-const serverAddress: string = "http://localhost"
+const serverAddress: string = "https://vaultofmemes.duckdns.org"
 var userId: number | null = null
 
 export function setUserId(id: number) {
@@ -22,13 +22,14 @@ export async function deleteMeme(tgId: string): Promise<void> {
 
 export async function updateMeme(tgId: string, tags: string[]): Promise<void> {
     if (userId === null) throw "User is null";
-    const url = `${serverAddress}/image/delete?user_id=${userId}&tg_file_id=${tgId}`
+    const url = `${serverAddress}/image/tags?user_id=${userId}&tg_file_id=${tgId}`
     await fetch(url, { method: "PUT", body: JSON.stringify({ tags: tags }) });
 }
 
-export async function getImage(_tgId: string) {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    return "https://www.alleycat.org/wp-content/uploads/2019/03/FELV-cat.jpg"
+export function getImage(tgId: string): string {
+    if (userId === null) throw "User is null";
+    const url = `${serverAddress}/image/${tgId}`
+    return url
 }
 
 
