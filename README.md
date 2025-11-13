@@ -1,14 +1,24 @@
-# Meme Vault telegram MiniApp
+# Meme Vault MiniApp
 
-This is a MiniApp created to manage files for the Meme Vault telegram bot.
+Мини-приложение для телеграмма для просмотра и редактирования файлов в проекте MemeVault
 
+## Возможности
 
-## Capabilities
+- Просмотр файлов
+- Фильтрация файлов по тегу
+- Редактирование тегов у отдельного файла
+- Удаление файла
 
-- View files
+## Инструкция по сборке
 
-- Filter files by tags
+`git clone https://github.com/arthur-alekseev-itmo/MemeVaultUI.git` - склонировать репозиторий
 
-- Edit file tags
+`cd MemeVaultUI` - перейти в репозиторий
 
-- Remove files
+`npm install` - установить все зависимости
+
+`npm run dev` - запусть dev-версию приложения
+
+`npm run dev:https` - запусть dev-версию приложения с https для работы с телеграммом
+
+`npm run build; npm run deploy` - выложить приложение на GH Pages
