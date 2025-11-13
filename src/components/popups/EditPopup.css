@@ -54,6 +54,7 @@
     font-weight: 200;
     font-family: inherit;
     height: 100%;
+    resize: none;
 }
 
 .tags-edit:has(.input-area:focus) {

@@ -9,7 +9,7 @@ import { meme, found_memes } from "./types"
 //     return fetch(url, { method: "POST", body: JSON.stringify(body) })
 // }
 
-const loadTime = 500;
+const loadTime = 1000;
 
 function delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));

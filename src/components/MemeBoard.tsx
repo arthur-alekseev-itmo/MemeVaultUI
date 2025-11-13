@@ -55,8 +55,8 @@ export function MemeBoard() {
         memes.length == 0 ? <NoMemes />
             : <div className="meme-board"> {memes.map((e, i) => <Meme key={i} image={e} update={update} />)} </div>
 
-    return <>
+    return <div className='meme-board-outer'>
         <Search search={handleFilter} />
         {content}
-    </>
+    </div>
 }
