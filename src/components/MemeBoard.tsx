@@ -7,6 +7,7 @@ import { Loading } from './Loading';
 import { getAllMemes } from '@/client/backendClient';
 import { Search } from './Search';
 import { useTranslation } from 'react-i18next';
+import fuzzysearch from 'fuzzysearch-ts';
 
 function NoMemes() {
     const { t } = useTranslation();
@@ -31,7 +32,9 @@ export function MemeBoard() {
     const { t } = useTranslation();
 
     const handleFilter = (prompt: string) => {
-        const filtered = allMemes?.filter(x => x.tags.join(" ").includes(prompt))
+        const filtered = allMemes?.filter(x =>
+            fuzzysearch(prompt.toLowerCase(), x.tags.join(" ").toLowerCase())
+        )
         setMemes(filtered ?? null);
     }
 
